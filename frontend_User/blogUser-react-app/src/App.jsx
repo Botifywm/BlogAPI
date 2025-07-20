@@ -5,11 +5,9 @@ import "./App.css";
 import NavBar from "./components/Navigate";
 import LoginForm from "./components/LoginPage";
 import RegisterForm from "./components/RegisterPage";
-import PostForm from "./components/PostForm";
 import Home from "./components/Home";
 import Post from "./components/Post";
 import PostPublic from "./components/PostPublic";
-import UpdatePost from "./components/UpdatePost";
 
 function App() {
   const { page, id } = useParams();
@@ -21,10 +19,8 @@ function App() {
       {page === "home" && <Home currentUser={user} />}
       {page === "login" && <LoginForm />}
       {page === "register" && <RegisterForm />}
-      {page === "postForm" && <PostForm />}
       {page === "post" && id && <Post postId={id} />}
       {page === "postPublic" && id && <PostPublic postId={id} />}
-      {page === "updatePost" && id && <UpdatePost postId={id} />}
 
       {!page && <LoginForm />}
     </>
