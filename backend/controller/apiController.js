@@ -159,13 +159,11 @@ async function updateComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-  // const postId = req.params.postId;
   const commentId = req.params.commentId;
   try {
     await prisma.comment.delete({
       where: { id: commentId },
     });
-    // res.redirect(`/getPost/${postId}`);
     res.status(200).json({ success: "Comment deleted." });
   } catch (error) {
     res.status(500).json({ error: "Delete failed." });
@@ -259,21 +257,3 @@ module.exports = {
   loginUser,
   loginAdmin,
 };
-
-// what to create
-// 1. login the user xxx
-// 2. create user regsiter xxx
-
-// for admin page
-// 4. create post xxx
-// 5. get allPost (dashboard - show all the posts you have) xxx
-// 6. fetch one post xxx
-// 7. update a single post xxx
-// 8. deletes a post xxx
-
-//public page for user
-// 9. create comment xxx
-// 10. deletes comment xxx
-// 11. update comment xxx
-// 12. fetch one post xxx
-// 13. get allComments for a post xxx
