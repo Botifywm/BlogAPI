@@ -5,10 +5,12 @@ function Home({ currentUser }) {
   const [postList, setPostList] = useState([]);
   const [error, setError] = useState("");
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("http://localhost:3030/api/getAllPosts", {
+        const res = await fetch(`${API_BASE}/api/getAllPosts`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });

@@ -9,11 +9,13 @@ function PostForm() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const posting = await fetch("http://localhost:3030/api/createPost", {
+      const posting = await fetch(`${API_BASE}/api/createPost`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

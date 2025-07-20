@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 function Post({ postId }) {
   const [post, setPost] = useState(null);
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   const fetchPost = async () => {
     try {
-      const res = await fetch(`http://localhost:3030/api/getPost/${postId}`, {
+      const res = await fetch(`${API_BASE}/api/getPost/${postId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,16 +37,13 @@ function Post({ postId }) {
 
   async function deletePost(postId) {
     try {
-      const res = await fetch(
-        `http://localhost:3030/api/deletePost/${postId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/deletePost/${postId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       if (!res.ok) {
         setError("Post failed to delete");
@@ -75,16 +74,13 @@ function Post({ postId }) {
 
   async function handleDelete(commentId) {
     try {
-      const res = await fetch(
-        `http://localhost:3030/api/deleteComment/${commentId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/deleteComment/${commentId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       const data = await res.json();
       if (!res.ok) {

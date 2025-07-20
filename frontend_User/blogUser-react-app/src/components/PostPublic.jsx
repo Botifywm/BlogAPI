@@ -4,18 +4,17 @@ function PostPublic({ postId }) {
   const [post, setPost] = useState(null);
   const [error, setError] = useState("");
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   // Get Post API
   const fetchPost = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:3030/api/getPostPublic/${postId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/getPostPublic/${postId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       const data = await res.json();
       if (!res.ok) {

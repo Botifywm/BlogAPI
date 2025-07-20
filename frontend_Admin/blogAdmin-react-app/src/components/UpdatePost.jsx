@@ -10,22 +10,21 @@ function UpdatePost({ postId }) {
   const [imageUrl, setImageUrl] = useState(imageUrlPrev);
   const [published, setPublished] = useState(publishedPrev);
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const resUpdate = await fetch(
-        `http://localhost:3030/api/updatePost/${postId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ title, content, imageUrl, published }),
-        }
-      );
+      const resUpdate = await fetch(`${API_BASE}/api/updatePost/${postId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ title, content, imageUrl, published }),
+      });
 
       if (!resUpdate.ok) {
         const errorText = await resUpdate.text();

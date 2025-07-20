@@ -7,10 +7,12 @@ function Post({ postId }) {
   const [editComment, setEditComment] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
 
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   // Get Post API
   const fetchPost = async () => {
     try {
-      const res = await fetch(`http://localhost:3030/api/getPost/${postId}`, {
+      const res = await fetch(`${API_BASE}/api/getPost/${postId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -41,17 +43,14 @@ function Post({ postId }) {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `http://localhost:3030/api/createComment/${postId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ content: comment }),
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/createComment/${postId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ content: comment }),
+      });
 
       const data = await res.json();
       if (!res.ok) {
@@ -71,17 +70,14 @@ function Post({ postId }) {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `http://localhost:3030/api/updateComment/${commentId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ content: editComment }),
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/updateComment/${commentId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({ content: editComment }),
+      });
 
       const data = await res.json();
       if (!res.ok) {
@@ -109,16 +105,13 @@ function Post({ postId }) {
   // Delete Comment API
   async function handleDelete(commentId) {
     try {
-      const res = await fetch(
-        `http://localhost:3030/api/deleteComment/${commentId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const res = await fetch(`${API_BASE}/api/deleteComment/${commentId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       const data = await res.json();
       if (!res.ok) {

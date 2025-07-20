@@ -7,11 +7,13 @@ function LoginForm() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3030/api/login", {
+      const res = await fetch(`${API_BASE}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
