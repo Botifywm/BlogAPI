@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
 
 function Post({ postId }) {
   const [post, setPost] = useState(null);
@@ -8,8 +6,6 @@ function Post({ postId }) {
   const [comment, setComment] = useState("");
   const [editComment, setEditComment] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
-  // const [commentList, setCommentList] = useState("");
-  // const navigate = useNavigate();
 
   // Get Post API
   const fetchPost = async () => {

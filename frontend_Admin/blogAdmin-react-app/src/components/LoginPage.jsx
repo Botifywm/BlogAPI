@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "./navBar";
 
 function LoginForm() {
   const [username, setUserName] = useState("");
@@ -33,38 +32,6 @@ function LoginForm() {
     }
   }
 
-  // return (
-  //   <form action="POST" onSubmit={handleSubmit}>
-  //     <p >Login</p>
-  //     {error && <p style={{ color: "red" }}>{error}</p>}
-
-  //     <div>
-  //       <label htmlFor="username">Username: </label>
-  //       <input
-  //         id="username"
-  //         type="text"
-  //         placeholder="Username"
-  //         value={username}
-  //         onChange={(e) => setUserName(e.target.value)}
-  //         required
-  //       />
-  //     </div>
-
-  //     <div>
-  //       <label htmlFor="password">Password: </label>
-  //       <input
-  //         id="password"
-  //         type="text"
-  //         placeholder="Password"
-  //         value={password}
-  //         onChange={(e) => setPassword(e.target.value)}
-  //         required
-  //       />
-  //     </div>
-
-  //     <button type="submit">Login</button>
-  //   </form>
-  // );
   return (
     <div className="login-page">
       <form

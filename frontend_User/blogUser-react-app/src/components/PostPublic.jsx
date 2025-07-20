@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useParams } from "react-router-dom";
 
 function PostPublic({ postId }) {
   const [post, setPost] = useState(null);
   const [error, setError] = useState("");
-  // const [commentList, setCommentList] = useState("");
-  // const navigate = useNavigate();
 
   // Get Post API
   const fetchPost = async () => {

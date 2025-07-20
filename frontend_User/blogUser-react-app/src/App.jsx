@@ -2,7 +2,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/navBar";
+import NavBar from "./components/Navigate";
 import LoginForm from "./components/LoginPage";
 import RegisterForm from "./components/RegisterPage";
 import PostForm from "./components/PostForm";

@@ -2,7 +2,7 @@
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 import "./App.css";
-import NavBar from "./components/navBar";
+import NavBar from "./components/Navigate";
 import LoginForm from "./components/LoginPage";
 import PostForm from "./components/PostForm";
 import Home from "./components/Home";
@@ -25,14 +25,6 @@ function App() {
       {!page && <LoginForm />}
     </>
   );
-
-  // if (page === "home") return <Home />;
-  // if (page === "login") return <LoginForm />;
-  // if (page === "postForm") return <PostForm />;
-  // if (page === "post" && id) return <Post postId={id} />;
-  // if (page === "updatePost" && id) return <UpdatePost postId={id} />;
-
-  // return <LoginForm />;
 }
 
 export default App;
