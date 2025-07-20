@@ -27,7 +27,7 @@ function NavBar({ currentUser }) {
             Home
           </Link>
         )}
-        <a href="http://localhost:5173/home" className="navLink">
+        <a href="https://blog-api-public.vercel.app/" className="navLink">
           Public Blog
         </a>
         {currentUser && (

@@ -26,9 +26,9 @@ function NavBar({ currentUser }) {
           Home / Explore
         </Link>
         {!currentUser && (
-          <Link className="navLink" to={"/home"}>
+          <a className="navLink" href="https://blog-api-admin.vercel.app/">
             Admin Page
-          </Link>
+          </a>
         )}
       </div>
 
