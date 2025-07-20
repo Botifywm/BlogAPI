@@ -11,6 +11,9 @@ app.use(express.json());
 
 const apiRouter = require("./routes/apiRouter");
 app.use("/api", apiRouter);
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});
 
 const PORT = 3030;
 app.listen(PORT, () =>

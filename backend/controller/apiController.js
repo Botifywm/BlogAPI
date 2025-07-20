@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 async function createPosts(req, res) {
   try {
     const { title, content, imageUrl, published } = req.body;
-    console.log("check role: ", req.user);
     if (req.user.role !== "author") {
       return res.status(403).json({ error: "Only authors can create posts" });
     }
@@ -38,7 +37,6 @@ async function getAllPosts(req, res) {
         },
       },
     });
-
     res.status(200).json(allPosts);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
@@ -46,7 +44,6 @@ async function getAllPosts(req, res) {
 }
 
 async function getPost(req, res) {
-  console.log("we hit get post");
   const postId = req.params.postId;
   const currentUser = req.user;
   try {
@@ -70,7 +67,6 @@ async function getPost(req, res) {
       res.status(200).json(post);
     }
   } catch (error) {
-    console.log("here we go");
     res.status(500).json({ error: "Cannot fetch posts" });
   }
 }
@@ -82,7 +78,7 @@ async function updatePost(req, res) {
     return res.status(403).json({ error: "Only authors can update posts" });
   }
   try {
-    const updating = await prisma.post.update({
+    await prisma.post.update({
       where: { id: postId },
       data: {
         title: title,
@@ -133,7 +129,6 @@ async function createComment(req, res) {
 }
 
 async function updateComment(req, res) {
-  // const postId = req.params.postId;
   const commentId = req.params.commentId;
   const userId = req.user.id;
   const content = req.body.content;
@@ -152,7 +147,6 @@ async function updateComment(req, res) {
     } else {
       res.status(200).json({ success: "Comment updated." });
     }
-    // res.redirect(`/getPost/${postId}`);
   } catch (error) {
     res.status(500).json({ error: "Update failed." });
   }
@@ -172,7 +166,6 @@ async function deleteComment(req, res) {
 
 async function createUser(req, res) {
   try {
-    console.log("createUser");
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const userAdded = await prisma.users.create({
@@ -200,7 +193,6 @@ async function loginUser(req, res) {
       return res.status(401).json({ error: "Invalid User or Password" });
 
     const pw = await bcrypt.compare(password, user.password);
-    console.log("pw:", pw);
     if (!pw) return res.status(401).json({ error: "Invalid User or Password" });
 
     const token = jwt.sign(
@@ -223,13 +215,10 @@ async function loginAdmin(req, res) {
       where: { username: username },
     });
 
-    console.log("whjch user: ", user.role);
-
     if (!user || user.role !== "author")
       return res.status(401).json({ error: "Invalid User or Password" });
 
     const pw = await bcrypt.compare(password, user.password);
-    console.log("pw:", pw);
     if (!pw) return res.status(401).json({ error: "Invalid User or Password" });
 
     const token = jwt.sign(
