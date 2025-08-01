@@ -166,6 +166,7 @@ button.logoutBtn {
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 2rem;
   padding: 1rem;
+  place-items: center;
 }
 
 .blogCard {
@@ -208,10 +209,15 @@ button.logoutBtn {
   font-family: "Newsreader", sans-serif;
 }
 
-img.postImg {
-  display: block;
+.imgContainer {
+  width: 400px;
   margin: auto;
-  padding-bottom: 1rem;
+}
+
+img.postImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .postContent {
@@ -351,4 +357,18 @@ img.postImg {
 .postSubmitBtn:hover {
   background-color: goldenrod;
   color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .imgContainer {
+    width: 300px;
+    height: auto;
+  }
+
+  .blogCardsContainer {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  }
+  .blogCard {
+    width: 20rem;
+  }
 }

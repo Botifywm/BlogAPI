@@ -35,7 +35,13 @@ function Home({ currentUser }) {
       <div className="blogCardsContainer">
         {postList.map((post) => (
           <div className="blogCard">
-            <img src={`${post.imageUrl}/400/300`} alt="" />
+            <div className="imgContainer">
+              <img
+                className="postImg"
+                src={`${post.imageUrl}/400/300`}
+                alt=""
+              />
+            </div>
             {currentUser && (
               <Link
                 className="blogCardTitle"

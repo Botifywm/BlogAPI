@@ -41,7 +41,9 @@ function PostPublic({ postId }) {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="postContainer">
         <p className="postTitle">{post.title}</p>
-        <img className="postImg" src={`${post.imageUrl}/400/300`} alt="" />
+        <div className="imgContainer">
+          <img className="postImg" src={`${post.imageUrl}/400/300`} alt="" />
+        </div>
         <div className="postContent">{post.content}</div>
         <div className="postDetails">
           <p>Written by: {post.author.username}</p>
